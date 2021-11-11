@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="scenak.MainScena"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProiektoJosu.interfazeKud.HasieraKud">
+   <children>
+      <Label layoutX="195.0" layoutY="55.0" text="Ongi Etorri:" textFill="#2c0cff">
+         <font>
+            <Font name="System Bold" size="39.0" />
+         </font>
+      </Label>
+      <Pane layoutX="214.0" layoutY="134.0" prefHeight="213.0" prefWidth="187.0">
+         <children>
+            <ImageView fx:id="imageHDD" fitHeight="150.0" fitWidth="200.0" layoutX="35.0" onMousePressed="#mousePressed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../argazkiak/external-content.duckduckgo.com.png" />
+               </image>
+            </ImageView>
+         </children></Pane>
+   </children>
 </AnchorPane>
