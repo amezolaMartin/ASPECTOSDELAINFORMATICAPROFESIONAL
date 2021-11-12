@@ -35,14 +35,14 @@
 .cancel
 {
 
-   -fx-background-color: #c1bdbd;
+  -fx-background-color: #89f623;
   -fx-background-radius: 22;
   -fx-border-radius: 22;
   -fx-border-width: 1.1;
   -fx-border-color: #444141;
   -fx-padding: 0;
   -fx-font-size: 0;
-
+  transition: 0.3s;
 
 }
 
@@ -50,15 +50,16 @@
 .cancel:hover
 {
     -fx-text-fill: black;
-    -fx-background-color : #DC143C ;
+    -fx-background-color : #bdfa85 ;
     -fx-border-color: #444141;
 }
 .cancel:pressed
 {
     -fx-text-fill: black;
-    -fx-background-color : #DC143C ;
+    -fx-background-color : #bdfa85 ;
     -fx-border-color: #444141;
 }
+
 
 .minimize
 {
