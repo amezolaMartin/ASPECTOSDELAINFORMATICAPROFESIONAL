@@ -30,7 +30,8 @@ public class Main extends Application {
     private Parent hautatuUI;
 
     private HasieraKud mainController;
-    private HautaketaKud hautaketaController;
+
+
 
     private static final Main instance=new Main();
 
@@ -58,18 +59,15 @@ public class Main extends Application {
         sceneMain = new Scene(mainUI);
         mainController=loaderMain.getController();
         mainController.setMain(this);
+    }
 
+    public void aldatu() throws IOException {
         //hautaketa pantaila kargatu
         FXMLLoader loaderHautatu = new FXMLLoader(getClass().getResource("/scenak/HautaketaScena.fxml"));
         hautatuUI = loaderHautatu.load();
         sceneHautatu = new Scene(hautatuUI);
 
-
-    }
-
-    public void aldatu(){
         stageMain.setScene(sceneHautatu);
-        System.out.println("kaixo");
     }
 
     public static void Main(String[] args){
