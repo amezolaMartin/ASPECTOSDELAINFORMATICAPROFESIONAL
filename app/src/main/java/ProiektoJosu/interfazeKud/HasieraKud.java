@@ -3,17 +3,18 @@ package ProiektoJosu.interfazeKud;
 import ProiektoJosu.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HasieraKud {
 
     @FXML
     private PasswordField txtPasahitza;
 
-    private static HasieraKud instance=new HasieraKud();
+    private String pass;
+
+    private static final HasieraKud instance=new HasieraKud();
 
     public HasieraKud(){
     }
@@ -29,13 +30,17 @@ public class HasieraKud {
         return instance;
     }
 
-    public char[] getPasahitza(){
-        return txtPasahitza.getText().toCharArray();
+    private void getPasahitzaIntern(){
+        pass= txtPasahitza.getText();
     }
 
     @FXML
     void mousePressed() throws IOException {
+        getPasahitzaIntern();
         main.aldatu();
     }
 
+    public String getPasahitza() {
+        return pass;
+    }
 }

@@ -8,10 +8,11 @@ import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class HautaketaKud implements Initializable {
+public class HautaketaKud {
 
     @FXML
     private Label lblDiskaIzena;
@@ -27,6 +28,7 @@ public class HautaketaKud implements Initializable {
 
     private static HautaketaKud instance=new HautaketaKud();
 
+
     public static HautaketaKud getInstance() {
         return instance;
     }
@@ -36,32 +38,47 @@ public class HautaketaKud implements Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void hasieratu() {
         try {
             String line;
-            String cmd1="sudo parted -l";
-            System.out.println("kaixooo");
             Process pb = new ProcessBuilder("sudo", "ls", "-l").start();
 
-            char[] pasahitza=HasieraKud.getInstance().getPasahitza();
+            String pasahitza=HasieraKud.getInstance().getPasahitza();
+            System.out.println(pasahitza);
+            System.out.println("-------");
 
             OutputStreamWriter output = new OutputStreamWriter(pb.getOutputStream());
-
-            output.write(pasahitza);
-            output.write('\n');
-            output.flush();
+            InputStreamReader input = new InputStreamReader(pb.getInputStream());
 
 
-            Process p = Runtime.getRuntime().exec(cmd1);
-            p.waitFor();
 
-            BufferedReader input =
-                    new BufferedReader(new InputStreamReader(p.getInputStream()));
-            while ((line = input.readLine()) != null) {
+
+            int bytes, tryies = 0;
+            char buffer[] = new char[1024];
+            while ((bytes = input.read(buffer, 0, 1024)) != -1) {
+                if (bytes == 0)
+                    continue;
+                //Output the data to console, for debug purposes
+                String data = String.valueOf(buffer, 0, bytes);
+                System.out.println(data);
+                // Check for password request
+                if (data.contains("[sudo] password")) {
+                    output.write(pasahitza);
+                    output.write('\n');
+                    //output.flush();
+                    tryies++;
+                }
+            }
+
+
+
+
+            BufferedReader input2 =
+                    new BufferedReader(new InputStreamReader(pb.getInputStream()));
+            while ((line = input2.readLine()) != null) {
                 System.out.println(line);
             }
-            input.close();
+            input2.close();
 
         } catch (Exception e) {
             e.printStackTrace();

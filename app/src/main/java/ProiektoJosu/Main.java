@@ -30,6 +30,7 @@ public class Main extends Application {
     private Parent hautatuUI;
 
     private HasieraKud mainController;
+    private HautaketaKud hautaketaController;
 
 
 
@@ -66,6 +67,8 @@ public class Main extends Application {
         FXMLLoader loaderHautatu = new FXMLLoader(getClass().getResource("/scenak/HautaketaScena.fxml"));
         hautatuUI = loaderHautatu.load();
         sceneHautatu = new Scene(hautatuUI);
+        hautaketaController=loaderHautatu.getController();
+        hautaketaController.hasieratu();
 
         stageMain.setScene(sceneHautatu);
     }
