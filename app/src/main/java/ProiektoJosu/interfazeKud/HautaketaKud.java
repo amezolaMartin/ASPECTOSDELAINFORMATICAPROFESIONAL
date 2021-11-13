@@ -1,5 +1,6 @@
 package ProiektoJosu.interfazeKud;
 
+import ProiektoJosu.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -28,6 +29,8 @@ public class HautaketaKud {
 
     private static HautaketaKud instance=new HautaketaKud();
 
+    private Main main;
+
 
     public static HautaketaKud getInstance() {
         return instance;
@@ -41,19 +44,14 @@ public class HautaketaKud {
     public void hasieratu() {
         try {
             String line;
-            Process pb = new ProcessBuilder("sudo", "ls", "-l").start();
+            Process pb = new ProcessBuilder(new String[]{"/bin/bash", "-c", "/usr/bin/sudo /bin/ls -l"}).start();
 
-            String pasahitza=HasieraKud.getInstance().getPasahitza();
-            System.out.println(pasahitza);
-            System.out.println("-------");
+            String pasahitza=main.getMainController().getPasahitza();
 
             OutputStreamWriter output = new OutputStreamWriter(pb.getOutputStream());
             InputStreamReader input = new InputStreamReader(pb.getInputStream());
 
-
-
-
-            int bytes, tryies = 0;
+            int bytes;
             char buffer[] = new char[1024];
             while ((bytes = input.read(buffer, 0, 1024)) != -1) {
                 if (bytes == 0)
@@ -63,10 +61,11 @@ public class HautaketaKud {
                 System.out.println(data);
                 // Check for password request
                 if (data.contains("[sudo] password")) {
+                    System.out.println("pene");
                     output.write(pasahitza);
                     output.write('\n');
-                    //output.flush();
-                    tryies++;
+                    output.flush();
+
                 }
             }
 
@@ -86,4 +85,7 @@ public class HautaketaKud {
     }
 
 
+    public void setMain(Main main) {
+        this.main=main;
+    }
 }

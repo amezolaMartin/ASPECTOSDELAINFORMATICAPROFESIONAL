@@ -14,28 +14,32 @@ public class HasieraKud {
 
     private String pass;
 
-    private static final HasieraKud instance=new HasieraKud();
+    private static HasieraKud instance=new HasieraKud();
 
     public HasieraKud(){
     }
-
-    private Main main;
-
-    public void setMain(Main main) {
-        this.main = main;
-    }
-
 
     public static HasieraKud getInstance() {
         return instance;
     }
 
+
+    private Main main;
+
+    public void setMain(Main main) {
+        this.main = main;
+        pass="kk";
+    }
+
+
+
     private void getPasahitzaIntern(){
-        pass= txtPasahitza.getText();
+        pass=txtPasahitza.getText();
     }
 
     @FXML
     void mousePressed() throws IOException {
+        //HasieraKud.getInstance().getPasahitzaIntern();
         getPasahitzaIntern();
         main.aldatu();
     }

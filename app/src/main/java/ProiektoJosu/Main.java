@@ -29,8 +29,9 @@ public class Main extends Application {
     private Parent mainUI;
     private Parent hautatuUI;
 
-    private HasieraKud mainController;
-    private HautaketaKud hautaketaController;
+
+    private HasieraKud mainController=HasieraKud.getInstance();
+    private HautaketaKud hautaketaController=HautaketaKud.getInstance();
 
 
 
@@ -60,6 +61,7 @@ public class Main extends Application {
         sceneMain = new Scene(mainUI);
         mainController=loaderMain.getController();
         mainController.setMain(this);
+
     }
 
     public void aldatu() throws IOException {
@@ -67,14 +69,17 @@ public class Main extends Application {
         FXMLLoader loaderHautatu = new FXMLLoader(getClass().getResource("/scenak/HautaketaScena.fxml"));
         hautatuUI = loaderHautatu.load();
         sceneHautatu = new Scene(hautatuUI);
+
         hautaketaController=loaderHautatu.getController();
+        hautaketaController.setMain(this);
         hautaketaController.hasieratu();
+
 
         stageMain.setScene(sceneHautatu);
     }
 
-    public static void Main(String[] args){
-        launch(args);
+    public HasieraKud getMainController() {
+        return mainController;
     }
 
 
