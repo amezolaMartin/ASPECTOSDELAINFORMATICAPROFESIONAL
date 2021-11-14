@@ -2,16 +2,12 @@ package ProiektoJosu.interfazeKud;
 
 import ProiektoJosu.Main;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 import java.io.*;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.ResourceBundle;
 
 public class HautaketaKud {
 
@@ -27,14 +23,16 @@ public class HautaketaKud {
     @FXML
     private TextField txtGB;
 
-    private static HautaketaKud instance=new HautaketaKud();
-
     private Main main;
 
+    private static HautaketaKud instance=new HautaketaKud();
 
     public static HautaketaKud getInstance() {
         return instance;
     }
+
+    //programa
+    int diskaTamaina;
 
     @FXML
     void onClick() {
@@ -44,9 +42,11 @@ public class HautaketaKud {
     public void hasieratu() {
         diskaIzendatu();
 
+        //sliderGB.set
 
     }
 
+    //FIXME: terminal izeneko klase berria sortu txukunago egoteko
     private void diskaIzendatu() {
         try {
             String line;
@@ -73,7 +73,11 @@ public class HautaketaKud {
                 if(line.contains("Disk ")){
                     String unekoa=line;
                     unekoa=unekoa.replace("Disk ", "");
-                    unekoa=unekoa.split(": ")[0]; //TODO:regex erabili txukunago izateko
+                    String[] balioak=unekoa.split(": ");
+                    unekoa= balioak[0];//TODO:regex erabili txukunago izateko
+                    diskaTamaina=Integer.parseInt(balioak[1]
+                            .replace("[]","")); //TODO: lerro hau bukatu
+
                     lblDiskaIzena.setText(unekoa);
                     bool=true;
                 }
