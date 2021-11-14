@@ -1,6 +1,8 @@
 package ProiektoJosu.interfazeKud;
 
 import ProiektoJosu.Main;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -32,7 +34,8 @@ public class HautaketaKud {
     }
 
     //programa
-    int diskaTamaina;
+    int diskaTamaina; //tamaina zenbakia
+    String diskaTamainaLetra; //tamaina(GB,MB,...)
 
     @FXML
     void onClick() {
@@ -42,7 +45,21 @@ public class HautaketaKud {
     public void hasieratu() {
         diskaIzendatu();
 
-        //sliderGB.set
+        sliderLandu();
+
+    }
+
+    private void sliderLandu() {
+        //https://docs.oracle.com/javafx/2/ui_controls/slider.htm
+        // slider egiteko goiko programaren kode zati bat erabili da
+        sliderGB.setMax(diskaTamaina);
+        sliderGB.valueProperty().addListener(new ChangeListener<Number>() {
+            public void changed(ObservableValue<? extends Number> ov,
+                                Number old_val, Number new_val) {
+
+                txtGB.setText(String.format("%.2f", new_val));
+            }
+        });
 
     }
 
@@ -51,7 +68,6 @@ public class HautaketaKud {
         try {
             String line;
             Process pb = new ProcessBuilder(new String[]{"/bin/bash", "-c", "sudo -S parted -l"}).start();
-            //Process pb=Runtime.getRuntime().exec("ls -l");
 
             char[] pasahitza=main.getMainController().getPasahitza();
 
@@ -71,14 +87,15 @@ public class HautaketaKud {
             boolean bool=false;
             while ((line = input2.readLine()) != null && !bool) {
                 if(line.contains("Disk ")){
-                    String unekoa=line;
-                    unekoa=unekoa.replace("Disk ", "");
-                    String[] balioak=unekoa.split(": ");
-                    unekoa= balioak[0];//TODO:regex erabili txukunago izateko
-                    diskaTamaina=Integer.parseInt(balioak[1]
-                            .replace("[]","")); //TODO: lerro hau bukatu
+                    // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
+                    String diskaTam=line;
+                    diskaTam=diskaTam.replace("Disk ", "");
+                    String[] balioak=diskaTam.split(": ");
+                    diskaTam= balioak[0];//TODO:regex erabili txukunago izateko
 
-                    lblDiskaIzena.setText(unekoa);
+                    diskBalioak(balioak[1]);
+
+                    lblDiskaIzena.setText(diskaTam);
                     bool=true;
                 }
             }
@@ -89,6 +106,12 @@ public class HautaketaKud {
             e.printStackTrace();
         }
 
+    }
+
+    private void diskBalioak(String s) {
+        String[] balioak=s.split("(?<=\\d)(?=\\D)");
+        diskaTamaina=Integer.parseInt(balioak[0]);
+        diskaTamainaLetra=balioak[1];
     }
 
 
