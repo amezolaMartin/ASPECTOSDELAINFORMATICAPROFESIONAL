@@ -12,7 +12,7 @@ public class HasieraKud {
     @FXML
     private PasswordField txtPasahitza;
 
-    private String pass;
+    private char[] pass;
 
     private static HasieraKud instance=new HasieraKud();
 
@@ -28,13 +28,12 @@ public class HasieraKud {
 
     public void setMain(Main main) {
         this.main = main;
-        pass="kk";
     }
 
 
 
     private void getPasahitzaIntern(){
-        pass=txtPasahitza.getText();
+        pass=txtPasahitza.getText().toCharArray();
     }
 
     @FXML
@@ -44,7 +43,7 @@ public class HasieraKud {
         main.aldatu();
     }
 
-    public String getPasahitza() {
+    public char[] getPasahitza() {
         return pass;
     }
 }
