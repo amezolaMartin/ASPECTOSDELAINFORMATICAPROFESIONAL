@@ -98,6 +98,19 @@ public class HautaketaKud {
                     lblDiskaIzena.setText(diskaTam);
                     bool=true;
                 }
+                else if(line.contains("Disco ")){
+                    // erderaz badago SE
+                    // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
+                    String diskaTam=line;
+                    diskaTam=diskaTam.replace("Disco ", "");
+                    String[] balioak=diskaTam.split(": ");
+                    diskaTam= balioak[0];//TODO:regex erabili txukunago izateko
+
+                    diskBalioak(balioak[1]);
+
+                    lblDiskaIzena.setText(diskaTam);
+                    bool=true;
+                }
             }
             input2.close();
 
