@@ -7,15 +7,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProiektoJosu.interfazeKud.HautaketaKud">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProiektoJosu.interfazeKud.HautaketaKud">
    <children>
-      <ComboBox layoutX="53.0" layoutY="80.0" prefHeight="26.0" prefWidth="290.0" />
+      <ComboBox fx:id="cmbHautaketa" layoutX="53.0" layoutY="80.0" prefHeight="26.0" prefWidth="290.0" />
       <Label layoutX="53.0" layoutY="53.0" text="Zer egin nahi duzu?" />
-      <Label fx:id="lblGBAldatu" layoutX="53.0" layoutY="163.0" text="Zenbat MB?" />
+      <Label layoutX="53.0" layoutY="163.0" text="Zenbat MB?" />
       <TextField fx:id="txtGB" layoutX="208.0" layoutY="187.0" prefHeight="26.0" prefWidth="107.0" text="0.00" />
       <Slider fx:id="sliderGB" layoutX="56.0" layoutY="192.0" />
-      <Label layoutX="320.0" layoutY="191.0" text="MB" />
+      <Label fx:id="lblTamaina" layoutX="320.0" layoutY="191.0" text="MB" />
       <Label fx:id="lblDiskaIzena" layoutX="406.0" layoutY="53.0" prefHeight="18.0" prefWidth="156.0" text="Label" />
       <Button layoutX="502.0" layoutY="360.0" mnemonicParsing="false" onAction="#onClick" text="Aurrera" />
    </children>

@@ -1,15 +1,20 @@
 package ProiektoJosu.interfazeKud;
 
 import ProiektoJosu.Main;
+import ProiektoJosu.kudeatzaile.Aukerak;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.List;
 
 public class HautaketaKud {
 
@@ -17,13 +22,17 @@ public class HautaketaKud {
     private Label lblDiskaIzena;
 
     @FXML
-    private Label lblGBAldatu;
+    private Label lblTamaina;
 
     @FXML
     private Slider sliderGB;
 
     @FXML
     private TextField txtGB;
+
+    @FXML
+    private ComboBox<Aukerak> cmbHautaketa;
+
 
     private Main main;
 
@@ -39,6 +48,7 @@ public class HautaketaKud {
 
     @FXML
     void onClick() {
+        //TODO: aurrera botoiak egingo duena...
 
     }
 
@@ -47,10 +57,27 @@ public class HautaketaKud {
 
         sliderLandu();
 
+        comboBoxIrakurri();
     }
 
+    private void comboBoxIrakurri() {
+        //TODO: aukerak(n,w,q,d)
+        //emmammamama
+
+        List<Aukerak> aukerak=Arrays.asList(
+                new Aukerak('n',"partizio berria gehitu"),
+                new Aukerak('w',"gorde eta bukatu"),
+                new Aukerak('q',"irten gorde gabe"),
+                new Aukerak('d',"partizioa ezabatu")
+        );
+        ObservableList<Aukerak> aukObs = FXCollections.observableArrayList(aukerak);
+        cmbHautaketa.setItems(aukObs);
+    }
+
+
+
     private void sliderLandu() {
-        //https://docs.oracle.com/javafx/2/ui_controls/slider.htm
+        // https://docs.oracle.com/javafx/2/ui_controls/slider.htm
         // slider egiteko goiko programaren kode zati bat erabili da
         sliderGB.setMax(diskaTamaina);
         sliderGB.valueProperty().addListener(new ChangeListener<Number>() {
@@ -88,27 +115,29 @@ public class HautaketaKud {
             while ((line = input2.readLine()) != null && !bool) {
                 if(line.contains("Disk ")){
                     // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
-                    String diskaTam=line;
-                    diskaTam=diskaTam.replace("Disk ", "");
-                    String[] balioak=diskaTam.split(": ");
-                    diskaTam= balioak[0];//TODO:regex erabili txukunago izateko
+                    String diskIz=line;
+                    diskIz=diskIz.replace("Disk ", "");
+                    String[] balioak=diskIz.split(": ");
+                    diskIz= balioak[0];//TODO:regex erabili txukunago izateko
 
                     diskBalioak(balioak[1]);
 
-                    lblDiskaIzena.setText(diskaTam);
+                    lblDiskaIzena.setText(diskIz);
+                    lblTamaina.setText(diskaTamainaLetra);
                     bool=true;
                 }
                 else if(line.contains("Disco ")){
                     // erderaz badago SE
                     // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
-                    String diskaTam=line;
-                    diskaTam=diskaTam.replace("Disco ", "");
-                    String[] balioak=diskaTam.split(": ");
-                    diskaTam= balioak[0];//TODO:regex erabili txukunago izateko
+                    String diskIz=line;
+                    diskIz=diskIz.replace("Disco ", "");
+                    String[] balioak=diskIz.split(": ");
+                    diskIz= balioak[0];//TODO:regex erabili txukunago izateko
 
                     diskBalioak(balioak[1]);
 
-                    lblDiskaIzena.setText(diskaTam);
+                    lblDiskaIzena.setText(diskIz);
+                    lblTamaina.setText(diskaTamainaLetra);
                     bool=true;
                 }
             }

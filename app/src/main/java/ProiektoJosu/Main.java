@@ -41,7 +41,6 @@ public class Main extends Application {
         return instance;
     }
 
-    //TODO:run application as sudo
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -69,8 +68,8 @@ public class Main extends Application {
         FXMLLoader loaderHautatu = new FXMLLoader(getClass().getResource("/scenak/HautaketaScena.fxml"));
         hautatuUI = loaderHautatu.load();
         sceneHautatu = new Scene(hautatuUI);
-
         hautaketaController=loaderHautatu.getController();
+
         hautaketaController.setMain(this);
         hautaketaController.hasieratu();
 
