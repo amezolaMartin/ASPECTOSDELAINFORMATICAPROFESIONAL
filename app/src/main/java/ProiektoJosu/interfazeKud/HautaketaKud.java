@@ -125,6 +125,10 @@ public class HautaketaKud {
                     diskIz=diskIz.replace("Disk ", "");
                     String[] balioak=diskIz.split(": ");
                     diskIz= balioak[0];//TODO:regex erabili txukunago izateko
+                    // Erabili behar den regex (sudo parted -l | grep '^Disk /' | awk '{print $2}' | awk -F ':' '{print $1}')
+                    // Erderaz badago ordenagailua:
+                    //sudo parted -l | grep '^Disco /' | awk '{print $2}' | awk -F ':' '{print $1}'
+
 
                     diskBalioak(balioak[1]);
 
