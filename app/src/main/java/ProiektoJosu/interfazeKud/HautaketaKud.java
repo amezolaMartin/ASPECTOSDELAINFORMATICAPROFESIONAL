@@ -182,4 +182,7 @@ public class HautaketaKud {
 
 
 
-// Gaizka Zuazo guapo
+
+
+
+// Gaizka zuazo guapo
