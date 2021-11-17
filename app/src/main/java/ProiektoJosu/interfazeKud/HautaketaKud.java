@@ -59,6 +59,8 @@ public class HautaketaKud {
         if (aukera!= null) {
             System.out.println(aukera.toString());
         }
+
+        char pal = aukera.getAukera();
     }
 
     public void hasieratu() {

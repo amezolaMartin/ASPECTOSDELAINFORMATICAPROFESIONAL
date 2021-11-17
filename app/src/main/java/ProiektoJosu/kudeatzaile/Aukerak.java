@@ -9,8 +9,16 @@ public class Aukerak {
         this.testua = testua;
     }
 
+
+
+
     @Override
     public String toString() {
         return testua;
+    }
+
+
+    public char getAukera() {
+        return aukera;
     }
 }
