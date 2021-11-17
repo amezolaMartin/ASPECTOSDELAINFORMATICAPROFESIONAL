@@ -54,7 +54,13 @@ public class HautaketaKud {
                 "En abril de 1937, se autoproclamó jefe nacional de la Falange Española Tradicionalista y de las Juntas de Ofensiva Nacional Sindicalista (FET y de las JONS), partido único resultado de la fusión de la fascista Falange Española de las JONS y de la Comunión Tradicionalista. Acabada la guerra, instauró una dictadura fascistizada13\u200B o régimen semifascista,14\u200B e incorporó una influencia clara de los totalitarismos alemán e italiano en campos como las relaciones laborales, la política económica autárquica, la estética, el uso de los símbolos y el denominado «Movimiento Nacional».15\u200B En sus últimos estertores, el régimen transitó más próximo a las dictaduras desarrollistas,16\u200B aunque siempre conservó rasgos fascistas vestigiales,14\u200B régimen que en su conjunto es conocido como franquismo, caracterizado por la ausencia de una ideología claramente definida más allá del anticomunismo y el nacionalcatolicismo.\n" +
                 "\n" +
                 "Durante su mandato al frente del Ejército y de la Jefatura del Estado, especialmente durante la guerra civil y los primeros años del régimen, se produjo una fuerte represión, en particular contra los partidarios del bando republicano que fue derrotado en la contienda, a la que se sumó el exilio de centenares de miles de españoles al extranjero. La cifra total de víctimas mortales varía en torno a varios centenares de miles de personas, que perecieron en su mayoría en campos de concentración, ejecuciones extrajudiciales o en prisión.17\u200B18\u200B ");
+            //obtenemos el valor del combobox
+        Aukerak aukera = cmbHautaketa.getValue();
+        if (aukera!= null) {
+            System.out.println(aukera.toString());
+        }
 
+        char pal = aukera.getAukera();
     }
 
     public void hasieratu() {
