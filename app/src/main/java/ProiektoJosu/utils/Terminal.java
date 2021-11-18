@@ -78,10 +78,16 @@ public class Terminal {
                     break;
                 case 'w':
                     //TODO: w -k egingo duen funtzioa
+                    output.write(aukerak.getAukera());
+                    //erantzuna "The partition table has been altered"
                 case 'q':
                     //TODO: q -k egingo duen funtzioa
+                    output.write(aukerak.getAukera());
+                    //erantzuna "/n"
                 case 'd':
                     //TODO: d -k egingoo duen funtzioa
+                    output.write(aukerak.getAukera());
+                    // si hay mas de una particion 
                     break;
             }
 
