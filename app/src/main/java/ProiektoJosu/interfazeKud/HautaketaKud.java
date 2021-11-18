@@ -2,15 +2,18 @@ package ProiektoJosu.interfazeKud;
 
 import ProiektoJosu.Main;
 import ProiektoJosu.kudeatzaile.Aukerak;
+import ProiektoJosu.utils.Terminal;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 import java.io.*;
 import java.util.Arrays;
@@ -49,13 +52,27 @@ public class HautaketaKud {
     @FXML
     void onClick() {
         //TODO: aurrera botoiak egingo duena...
+
         Aukerak aukera = cmbHautaketa.getValue();
         if (aukera!= null) {
-            System.out.println(aukera.toString());
+            var input=Terminal.getInstance().fdiskExec(
+                    aukera,
+                    lblDiskaIzena.getText(),
+                    txtGB.getText(),
+                    lblTamaina.getText()
+            );
         }
 
-        char pal = aukera.getAukera();
     }
+
+
+    @FXML
+    void onActionText(ActionEvent event) {
+        sliderGB.setValue(
+                Integer.parseInt(txtGB.getText())
+        );
+    }
+
 
     public void hasieratu() {
 
@@ -68,7 +85,6 @@ public class HautaketaKud {
 
     private void comboBoxIrakurri() {
         //TODO: aukerak(n,w,q,d)
-        //emmammamama
 
         List<Aukerak> aukerak=Arrays.asList(
                 new Aukerak('n',"partizio berria gehitu"),
@@ -94,29 +110,16 @@ public class HautaketaKud {
             }
         });
 
+
+
     }
 
     //FIXME: terminal izeneko klase berria sortu txukunago egoteko
     private void diskaIzendatu() {
         try {
+            var input2=Terminal.getInstance().sudoTerminal("parted -l");
             String line;
-            Process pb = new ProcessBuilder(new String[]{"/bin/bash", "-c", "sudo -S parted -l"}).start();
 
-            char[] pasahitza=main.getMainController().getPasahitza();
-
-
-            OutputStreamWriter output = new OutputStreamWriter(pb.getOutputStream());
-            InputStreamReader input = new InputStreamReader(pb.getInputStream());
-
-            output.write(pasahitza);
-            Arrays.fill(pasahitza,'k');
-            output.write('\n');
-            output.flush();
-
-
-
-            BufferedReader input2 =
-                    new BufferedReader(new InputStreamReader(pb.getInputStream()));
             boolean bool=false;
             while ((line = input2.readLine()) != null && !bool) {
                 if(line.contains("Disk ")){

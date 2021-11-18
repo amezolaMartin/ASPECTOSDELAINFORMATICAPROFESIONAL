@@ -3,6 +3,7 @@ package ProiektoJosu;
 
 import ProiektoJosu.interfazeKud.HasieraKud;
 import ProiektoJosu.interfazeKud.HautaketaKud;
+import ProiektoJosu.utils.Terminal;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -60,6 +61,8 @@ public class Main extends Application {
         sceneMain = new Scene(mainUI);
         mainController=loaderMain.getController();
         mainController.setMain(this);
+
+        Terminal.getInstance().setMain(this);
 
     }
 
