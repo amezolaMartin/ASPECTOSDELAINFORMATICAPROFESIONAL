@@ -25,6 +25,9 @@ public class HautaketaKud {
     private Label lblDiskaIzena;
 
     @FXML
+    private Label lblDiskaIzena1;
+
+    @FXML
     private Label lblTamaina;
 
     @FXML
@@ -136,6 +139,7 @@ public class HautaketaKud {
                     diskBalioak(balioak[1]);
 
                     lblDiskaIzena.setText(diskIz);
+                    lblDiskaIzena1.setText(diskIz);
                     lblTamaina.setText(diskaTamainaLetra);
                     bool=true;
                 }
