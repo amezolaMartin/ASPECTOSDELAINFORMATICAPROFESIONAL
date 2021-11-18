@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class HasieraKud {
 

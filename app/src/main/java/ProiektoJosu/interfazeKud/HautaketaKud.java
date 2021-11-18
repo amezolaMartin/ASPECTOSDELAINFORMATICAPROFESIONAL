@@ -13,9 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
-import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -154,6 +152,7 @@ public class HautaketaKud {
                     diskBalioak(balioak[1]);
 
                     lblDiskaIzena.setText(diskIz);
+                    lblDiskaIzena1.setText(diskIz);
                     lblTamaina.setText(diskaTamainaLetra);
                     bool=true;
                 }
