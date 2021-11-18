@@ -68,6 +68,7 @@ public class Terminal {
 
             //aukerak(n,w,q,d)
             switch (aukerak.getAukera()){
+                //https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/
                 case 'n':
                     output.write(aukerak.getAukera());
                     output.write('\n');
