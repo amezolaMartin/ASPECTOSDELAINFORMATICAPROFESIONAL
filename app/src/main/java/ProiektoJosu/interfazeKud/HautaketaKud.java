@@ -49,12 +49,6 @@ public class HautaketaKud {
     @FXML
     void onClick() {
         //TODO: aurrera botoiak egingo duena...
-        System.out.println("Francisco Franco Bahamondef\u200Bg\u200B (Ferrol, 4 de diciembre de 1892-Madrid, 20 de noviembre de 1975) fue un militar y dictador español, integrante del grupo de altos cargos de la cúpula militar que dio el golpe de Estado de 1936 contra el Gobierno democrático de la Segunda República, dando lugar a la guerra civil española. Fue investido como jefe supremo del bando sublevado el 1 de octubre de 1936, y ejerció como caudillo de Españab\u200B —jefe de Estado— desde el término del conflicto hasta su fallecimiento en 1975, y como presidente del Gobierno —jefe de Gobierno— entre 1938 y 1973.12\u200B\n" +
-                "\n" +
-                "En abril de 1937, se autoproclamó jefe nacional de la Falange Española Tradicionalista y de las Juntas de Ofensiva Nacional Sindicalista (FET y de las JONS), partido único resultado de la fusión de la fascista Falange Española de las JONS y de la Comunión Tradicionalista. Acabada la guerra, instauró una dictadura fascistizada13\u200B o régimen semifascista,14\u200B e incorporó una influencia clara de los totalitarismos alemán e italiano en campos como las relaciones laborales, la política económica autárquica, la estética, el uso de los símbolos y el denominado «Movimiento Nacional».15\u200B En sus últimos estertores, el régimen transitó más próximo a las dictaduras desarrollistas,16\u200B aunque siempre conservó rasgos fascistas vestigiales,14\u200B régimen que en su conjunto es conocido como franquismo, caracterizado por la ausencia de una ideología claramente definida más allá del anticomunismo y el nacionalcatolicismo.\n" +
-                "\n" +
-                "Durante su mandato al frente del Ejército y de la Jefatura del Estado, especialmente durante la guerra civil y los primeros años del régimen, se produjo una fuerte represión, en particular contra los partidarios del bando republicano que fue derrotado en la contienda, a la que se sumó el exilio de centenares de miles de españoles al extranjero. La cifra total de víctimas mortales varía en torno a varios centenares de miles de personas, que perecieron en su mayoría en campos de concentración, ejecuciones extrajudiciales o en prisión.17\u200B18\u200B ");
-            //obtenemos el valor del combobox
         Aukerak aukera = cmbHautaketa.getValue();
         if (aukera!= null) {
             System.out.println(aukera.toString());
@@ -179,10 +173,3 @@ public class HautaketaKud {
 
 
 }
-
-
-
-
-
-
-// Gaizka zuazo guapo
