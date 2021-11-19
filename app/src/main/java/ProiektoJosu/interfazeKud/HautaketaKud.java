@@ -92,7 +92,7 @@ public class HautaketaKud {
     }
 
     private void kargatuMarrazkia() {
-
+        
     }
 
     private void comboBoxIrakurri() {
