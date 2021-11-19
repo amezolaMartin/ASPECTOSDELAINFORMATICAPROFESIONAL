@@ -33,14 +33,11 @@ public class Terminal {
 
 
         OutputStreamWriter output = new OutputStreamWriter(pb.getOutputStream());
-        InputStreamReader input = new InputStreamReader(pb.getInputStream());
 
         output.write(pasahitza);
         Arrays.fill(pasahitza,'k');
         output.write('\n');
         output.flush();
-
-
 
         BufferedReader input2 =
                 new BufferedReader(new InputStreamReader(pb.getInputStream()));
@@ -48,6 +45,19 @@ public class Terminal {
         return input2;
 
     }
+
+
+    public BufferedReader terminalNormala(String komando) throws IOException {
+        Process pb = new ProcessBuilder(new String[]{"/bin/bash", "-c", komando}).start();
+
+        BufferedReader input2 =
+                new BufferedReader(new InputStreamReader(pb.getInputStream()));
+
+        return input2;
+
+    }
+
+
 
     public BufferedReader fdiskExec(Aukerak aukerak, String diskIz, String partizioTam, String MB){
 

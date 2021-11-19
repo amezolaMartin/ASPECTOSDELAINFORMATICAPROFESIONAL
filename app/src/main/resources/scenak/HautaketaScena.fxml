@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProiektoJosu.interfazeKud.HautaketaKud">
+<AnchorPane prefHeight="463.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ProiektoJosu.interfazeKud.HautaketaKud">
    <children>
       <ComboBox fx:id="cmbHautaketa" layoutX="53.0" layoutY="80.0" prefHeight="26.0" prefWidth="290.0" />
       <Label layoutX="53.0" layoutY="53.0" text="Zer egin nahi duzu?" />
@@ -18,13 +18,15 @@
       <Slider fx:id="sliderGB" layoutX="56.0" layoutY="192.0" stylesheets="@style.css" />
       <Label fx:id="lblTamaina" layoutX="320.0" layoutY="191.0" text="MB" />
       <Label fx:id="lblDiskaIzena" layoutX="406.0" layoutY="53.0" prefHeight="18.0" prefWidth="156.0" text="Label" />
-      <Button layoutX="502.0" layoutY="360.0" mnemonicParsing="false" onAction="#onClick" text="Aurrera" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="70.0" layoutX="50.0" layoutY="245.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38ff1f" height="60.0" layoutX="56.0" layoutY="250.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
-      <Pane layoutX="57.0" layoutY="250.0" prefHeight="60.0" prefWidth="232.0">
+      <Button layoutX="517.0" layoutY="421.0" mnemonicParsing="false" onAction="#onClick" text="Aurrera" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="70.0" layoutX="50.0" layoutY="304.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38ff1f" height="60.0" layoutX="56.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Pane layoutX="57.0" layoutY="309.0" prefHeight="60.0" prefWidth="232.0">
          <children>
             <Label fx:id="lblDiskaIzena1" layoutX="14.0" layoutY="21.0" prefHeight="18.0" prefWidth="156.0" text="Label" />
          </children>
       </Pane>
+      <ComboBox fx:id="cmbPartizio" layoutX="225.0" layoutY="260.0" prefHeight="28.0" prefWidth="166.0" />
+      <Label layoutX="50.0" layoutY="265.0" text="Hautatu ikusteko partizioa" />
    </children>
 </AnchorPane>

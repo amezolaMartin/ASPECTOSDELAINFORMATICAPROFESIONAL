@@ -14,6 +14,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +29,9 @@ public class HautaketaKud {
 
     @FXML
     private Label lblTamaina;
+
+    @FXML
+    private ComboBox<String> cmbPartizio;
 
     @FXML
     private Slider sliderGB;
@@ -82,11 +87,16 @@ public class HautaketaKud {
         sliderLandu();
 
         comboBoxIrakurri();
+
+        kargatuMarrazkia();
+    }
+
+    private void kargatuMarrazkia() {
+
     }
 
     private void comboBoxIrakurri() {
         //TODO: aukerak(n,w,q,d)
-
         List<Aukerak> aukerak=Arrays.asList(
                 new Aukerak('n',"partizio berria gehitu"),
                 new Aukerak('w',"gorde eta bukatu"),
@@ -95,6 +105,26 @@ public class HautaketaKud {
         );
         ObservableList<Aukerak> aukObs = FXCollections.observableArrayList(aukerak);
         cmbHautaketa.setItems(aukObs);
+
+        // partizioak
+        List<String> partizioak=new ArrayList<>();
+        try {
+            var input=Terminal.getInstance().terminalNormala("ls -l "+lblDiskaIzena.getText()+"*");
+            String line=input.readLine();
+
+            while ((line = input.readLine()) != null){
+                String diskIz=line;
+                String[] bal=diskIz.split(lblDiskaIzena.getText());
+                partizioak.add(lblDiskaIzena.getText()+bal[1]);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        ObservableList<String> partObs = FXCollections.observableArrayList(partizioak);
+        cmbPartizio.setItems(partObs);
+        cmbPartizio.getSelectionModel().selectFirst();
     }
 
 
@@ -132,7 +162,6 @@ public class HautaketaKud {
                     // Erabili behar den regex (sudo parted -l | grep '^Disk /' | awk '{print $2}' | awk -F ':' '{print $1}')
                     // Erderaz badago ordenagailua:
                     //sudo parted -l | grep '^Disco /' | awk '{print $2}' | awk -F ':' '{print $1}'
-
 
                     diskBalioak(balioak[1]);
 
