@@ -19,8 +19,8 @@
       <Label fx:id="lblTamaina" layoutX="320.0" layoutY="191.0" text="MB" />
       <Label fx:id="lblDiskaIzena" layoutX="406.0" layoutY="53.0" prefHeight="18.0" prefWidth="156.0" text="Label" />
       <Button layoutX="517.0" layoutY="421.0" mnemonicParsing="false" onAction="#onClick" text="Aurrera" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="70.0" layoutX="50.0" layoutY="304.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#38ff1f" height="60.0" layoutX="56.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
+      <Rectangle fx:id="rectZuria" arcHeight="5.0" arcWidth="5.0" fill="#f8f8f8" height="70.0" layoutX="50.0" layoutY="304.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <Rectangle fx:id="rectBerdea" arcHeight="5.0" arcWidth="5.0" fill="#38ff1f" height="60.0" layoutX="56.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" width="200.0" />
       <Pane layoutX="57.0" layoutY="309.0" prefHeight="60.0" prefWidth="232.0">
          <children>
             <Label fx:id="lblDiskaIzena1" layoutX="14.0" layoutY="21.0" prefHeight="18.0" prefWidth="156.0" text="Label" />

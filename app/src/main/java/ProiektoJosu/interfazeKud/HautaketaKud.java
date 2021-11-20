@@ -2,6 +2,7 @@ package ProiektoJosu.interfazeKud;
 
 import ProiektoJosu.Main;
 import ProiektoJosu.kudeatzaile.Aukerak;
+import ProiektoJosu.kudeatzaile.Diskak;
 import ProiektoJosu.utils.Terminal;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,6 +14,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +33,7 @@ public class HautaketaKud {
     private Label lblTamaina;
 
     @FXML
-    private ComboBox<String> cmbPartizio;
+    private ComboBox<Diskak> cmbPartizio;
 
     @FXML
     private Slider sliderGB;
@@ -41,6 +43,12 @@ public class HautaketaKud {
 
     @FXML
     private ComboBox<Aukerak> cmbHautaketa;
+
+    @FXML
+    private Rectangle rectZuria;
+
+    @FXML
+    private Rectangle rectBerdea;
 
 
     private Main main;
@@ -92,7 +100,13 @@ public class HautaketaKud {
     }
 
     private void kargatuMarrazkia() {
-        
+        double luzera=rectZuria.getWidth();
+        var disk=cmbPartizio.getValue();
+        double diskTam= disk.getTamaina();
+        double diskOkup=disk.getErabilita();
+
+
+
     }
 
     private void comboBoxIrakurri() {
@@ -107,22 +121,35 @@ public class HautaketaKud {
         cmbHautaketa.setItems(aukObs);
 
         // partizioak
-        List<String> partizioak=new ArrayList<>();
+        List<Diskak> partizioak=new ArrayList<>();
         try {
-            var input=Terminal.getInstance().terminalNormala("ls -l "+lblDiskaIzena.getText()+"*");
+            var input=Terminal.getInstance().terminalNormala("df -hT "+lblDiskaIzena.getText()+"*");
             String line=input.readLine();
 
             while ((line = input.readLine()) != null){
-                String diskIz=line;
-                String[] bal=diskIz.split(lblDiskaIzena.getText());
-                partizioak.add(lblDiskaIzena.getText()+bal[1]);
+                if(line.contains(lblDiskaIzena.getText())){
+                    // https://stackoverflow.com/questions/21165802/how-to-replace-multiple-spaces-and-newlines-with-one-blank-line
+                    // The trim() method removes whitespace from both ends of a string.
+
+                    //TODO: aldagai batek koma duenean (5,4) se lia...
+                    line=line.trim().replaceAll("(?m)(^ *| +(?= |$))", "");
+                    String[] datuak=line.split(" ");
+                    Diskak diska=new Diskak(
+                            datuak[0],
+                            Integer.parseInt(datuak[2].split("(\\D)")[0]),
+                            Integer.parseInt(datuak[3].split("(\\D)")[0]),
+                            datuak[2].replaceAll("[^A-Za-z]",""),
+                            datuak[5]
+                    );
+                    partizioak.add(diska);
+                }
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        ObservableList<String> partObs = FXCollections.observableArrayList(partizioak);
+        ObservableList<Diskak> partObs = FXCollections.observableArrayList(partizioak);
         cmbPartizio.setItems(partObs);
         cmbPartizio.getSelectionModel().selectFirst();
     }
