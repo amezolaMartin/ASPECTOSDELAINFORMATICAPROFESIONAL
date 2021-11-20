@@ -27,4 +27,15 @@ public class Diskak {
     public double getErabilita() {
         return erabilita;
     }
+
+    public String getNeurria() {
+        return neurria;
+    }
+
+    public String getMounted() {
+        return mounted;
+    }
+
+
+
 }

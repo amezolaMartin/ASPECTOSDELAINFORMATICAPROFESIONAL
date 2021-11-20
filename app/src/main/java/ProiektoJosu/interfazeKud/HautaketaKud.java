@@ -50,6 +50,9 @@ public class HautaketaKud {
     @FXML
     private Rectangle rectBerdea;
 
+    @FXML
+    private Label lblPartiTamMax;
+
 
     private Main main;
 
@@ -87,15 +90,16 @@ public class HautaketaKud {
         );
     }
 
+    @FXML
+    void partizioAldatuAction(ActionEvent event) {
+        kargatuMarrazkia();
+    }
+
 
     public void hasieratu() {
-
         diskaIzendatu();
-
         sliderLandu();
-
         comboBoxIrakurri();
-
         kargatuMarrazkia();
     }
 
@@ -105,8 +109,12 @@ public class HautaketaKud {
         double diskTam= disk.getTamaina();
         double diskOkup=disk.getErabilita();
 
+        double hiruErregela=(diskOkup*luzera/diskTam);
+        rectBerdea.setWidth(
+                (hiruErregela>=488) ? 488: hiruErregela
+        );
 
-
+        lblPartiTamMax.setText(String.valueOf(diskTam)+disk.getNeurria());
     }
 
     private void comboBoxIrakurri() {
@@ -133,6 +141,7 @@ public class HautaketaKud {
 
                     //TODO: aldagai batek koma duenean (5,4) se lia...
                     line=line.trim().replaceAll("(?m)(^ *| +(?= |$))", "");
+                    line=line.replace(",",".");
                     String[] datuak=line.split(" ");
                     Diskak diska=new Diskak(
                             datuak[0],
@@ -167,12 +176,9 @@ public class HautaketaKud {
                 txtGB.setText(String.format("%.2f", new_val));
             }
         });
-
-
-
     }
 
-    //FIXME: terminal izeneko klase berria sortu txukunago egoteko
+    
     private void diskaIzendatu() {
         try {
             var input2=Terminal.getInstance().sudoTerminal("parted -l");
@@ -180,30 +186,16 @@ public class HautaketaKud {
 
             boolean bool=false;
             while ((line = input2.readLine()) != null && !bool) {
-                if(line.contains("Disk ")){
+                if(line.contains("Disk ") || line.contains("Disco ")){
                     // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
                     String diskIz=line;
                     diskIz=diskIz.replace("Disk ", "");
+                    diskIz=diskIz.replace("Disco ", "");
                     String[] balioak=diskIz.split(": ");
-                    diskIz= balioak[0];//TODO:regex erabili txukunago izateko
+                    diskIz= balioak[0];
                     // Erabili behar den regex (sudo parted -l | grep '^Disk /' | awk '{print $2}' | awk -F ':' '{print $1}')
                     // Erderaz badago ordenagailua:
                     //sudo parted -l | grep '^Disco /' | awk '{print $2}' | awk -F ':' '{print $1}'
-
-                    diskBalioak(balioak[1]);
-
-                    lblDiskaIzena.setText(diskIz);
-                    lblDiskaIzena1.setText(diskIz);
-                    lblTamaina.setText(diskaTamainaLetra);
-                    bool=true;
-                }
-                else if(line.contains("Disco ")){
-                    // erderaz badago SE
-                    // Disk /dev/nvme0n1: 512GB lerroa txukundu programarako
-                    String diskIz=line;
-                    diskIz=diskIz.replace("Disco ", "");
-                    String[] balioak=diskIz.split(": ");
-                    diskIz= balioak[0];//TODO:regex erabili txukunago izateko
 
                     diskBalioak(balioak[1]);
 
