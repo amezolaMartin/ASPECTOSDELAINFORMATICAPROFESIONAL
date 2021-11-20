@@ -114,7 +114,7 @@ public class HautaketaKud {
                 (hiruErregela>=488) ? 488: hiruErregela
         );
 
-        lblPartiTamMax.setText(String.valueOf(diskTam)+disk.getNeurria());
+        lblPartiTamMax.setText(diskTam + disk.getNeurria());
     }
 
     private void comboBoxIrakurri() {
