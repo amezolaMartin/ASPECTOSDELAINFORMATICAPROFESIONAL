@@ -62,7 +62,6 @@ public class HautaketaKud {
 
     @FXML
     void onClick() {
-        //TODO: aurrera botoiak egingo duena...
 
         Aukerak aukera = cmbHautaketa.getValue();
         if (aukera!= null) {
