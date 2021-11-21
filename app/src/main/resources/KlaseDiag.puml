@@ -1,0 +1,93 @@
+@startuml
+
+skinparam linetype polyline
+
+class Main{
+    - Stage stageMain
+
+    - Scene sceneMain
+    - Scene sceneHautatu
+
+    - Parent mainUI
+    - Parent hautatuUI
+
+    - HasieraKud mainController
+    - HautaketaKud hautaketaController
+
+    -{static} Main instance
+
+    + static Main getInstance()
+    + void aldatu()
+    + HasieraKud getMainController()
+}
+
+
+
+
+class Aukerak{
+    -char aukera
+     String testua
+
+    __ getter eta setter __
+
+}
+together {
+    package /bin/bash <<Cloud>> {
+      class bash #line:green;back:lightblue
+    }
+
+    class Terminal{
+        -{static} final Terminal instance
+        - Main main
+
+        + BufferedReader sudoTerminal(String komando)
+        + BufferedReader terminalNormala(String komando)
+        + BufferedReader fdiskExec(Aukerak aukerak, String charD, String diskIz, String partizioTam, String MB)
+    }
+
+
+}
+
+class Diskak{
+    - String izena
+    - double tamaina
+    - double erabilita
+    - String neurria
+    - String mounted
+}
+
+package interfazeKud{
+    class HasieraKud{
+        - char[] pass;
+
+        __ event handlerak __
+        -void mousePressed()
+        -void onKeyPressed(KeyEvent event)
+    }
+
+    class HautaketaKud{
+        __ hasieraketak __
+        -diskaIzendatu()
+        -sliderLandu()
+        -comboBoxHasieratu()
+        -kargatuMarrazkia()
+
+    }
+}
+
+
+
+Main - HautaketaKud
+Main - HasieraKud
+HasieraKud -[hidden]HautaketaKud
+HautaketaKud *- Terminal
+HautaketaKud *- Diskak
+HautaketaKud *- Aukerak
+bash *- Terminal
+
+
+
+
+
+
+@enduml
