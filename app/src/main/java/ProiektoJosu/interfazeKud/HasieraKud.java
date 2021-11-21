@@ -3,6 +3,8 @@ package ProiektoJosu.interfazeKud;
 import ProiektoJosu.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -40,6 +42,14 @@ public class HasieraKud {
         //HasieraKud.getInstance().getPasahitzaIntern();
         getPasahitzaIntern();
         main.aldatu();
+    }
+
+
+    @FXML
+    void onKeyPressed(KeyEvent event) throws IOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            mousePressed();
+        }
     }
 
     public char[] getPasahitza() {

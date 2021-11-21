@@ -111,7 +111,7 @@ public class HautaketaKud {
 
         double hiruErregela=(diskOkup*luzera/diskTam);
         rectBerdea.setWidth(
-                (hiruErregela>=488) ? 488: hiruErregela
+                (hiruErregela>=488) ? 488: hiruErregela //488 baino handiagoa bada moztu tamaina, grafikoa 488 baino handiagoa bada txarto geratzen da
         );
 
         lblPartiTamMax.setText(diskTam + disk.getNeurria());
@@ -137,9 +137,7 @@ public class HautaketaKud {
             while ((line = input.readLine()) != null){
                 if(line.contains(lblDiskaIzena.getText())){
                     // https://stackoverflow.com/questions/21165802/how-to-replace-multiple-spaces-and-newlines-with-one-blank-line
-                    // The trim() method removes whitespace from both ends of a string.
-
-                    //TODO: aldagai batek koma duenean (5,4) se lia...
+                    // The trim() method removes whitespace from both ends of a string
                     line=line.trim().replaceAll("(?m)(^ *| +(?= |$))", "");
                     line=line.replace(",",".");
                     String[] datuak=line.split(" ");
