@@ -73,7 +73,6 @@ public class Main extends Application {
         sceneHautatu = new Scene(hautatuUI);
         hautaketaController=loaderHautatu.getController();
 
-        hautaketaController.setMain(this);
         hautaketaController.hasieratu();
 
 

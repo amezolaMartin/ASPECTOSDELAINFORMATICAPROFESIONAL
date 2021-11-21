@@ -1,11 +1,8 @@
 package ProiektoJosu.interfazeKud;
 
-import ProiektoJosu.Main;
 import ProiektoJosu.kudeatzaile.Aukerak;
 import ProiektoJosu.kudeatzaile.Diskak;
 import ProiektoJosu.utils.Terminal;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,9 +50,7 @@ public class HautaketaKud {
     private Label lblPartiTamMax;
 
 
-    private Main main;
-
-    private static HautaketaKud instance=new HautaketaKud();
+    private static final HautaketaKud instance=new HautaketaKud();
 
     public static HautaketaKud getInstance() {
         return instance;
@@ -90,7 +85,7 @@ public class HautaketaKud {
     @FXML
     void onActionText() {
         sliderGB.setValue(
-                Integer.parseInt(txtGB.getText())
+                Double.parseDouble(txtGB.getText())
         );
     }
 
@@ -140,7 +135,7 @@ public class HautaketaKud {
         List<Diskak> partizioak=new ArrayList<>();
         try {
             var input=Terminal.getInstance().terminalNormala("df -hT "+lblDiskaIzena.getText()+"*");
-            String line=input.readLine();
+            String line;
 
             while ((line = input.readLine()) != null){
                 if(line.contains(lblDiskaIzena.getText())){
@@ -185,13 +180,9 @@ public class HautaketaKud {
         // https://docs.oracle.com/javafx/2/ui_controls/slider.htm
         // slider egiteko goiko programaren kode zati bat erabili da
         sliderGB.setMax(diskaTamaina);
-        sliderGB.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov,
-                                Number old_val, Number new_val) {
-
-                txtGB.setText(String.format("%.2f", new_val));
-            }
-        });
+        sliderGB.valueProperty().addListener(
+                (ov, old_val, new_val) -> txtGB.setText(String.format("%.2f", new_val))
+        );
     }
 
     
@@ -238,9 +229,6 @@ public class HautaketaKud {
     }
 
 
-    public void setMain(Main main) {
-        this.main=main;
-    }
 
 
 }
