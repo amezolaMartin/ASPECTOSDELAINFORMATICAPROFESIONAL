@@ -8,7 +8,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -72,26 +71,31 @@ public class HautaketaKud {
 
         Aukerak aukera = cmbHautaketa.getValue();
         if (aukera!= null) {
-            var input=Terminal.getInstance().fdiskExec(
+            var part=cmbPartizio.getValue().toString().substring(
+                    cmbPartizio.getValue().toString().length() - 1
+            );
+            Terminal.getInstance().fdiskExec(
                     aukera,
+                    part,
                     lblDiskaIzena.getText(),
                     txtGB.getText(),
                     lblTamaina.getText()
             );
+            partizioakKargatu();
         }
 
     }
 
 
     @FXML
-    void onActionText(ActionEvent event) {
+    void onActionText() {
         sliderGB.setValue(
                 Integer.parseInt(txtGB.getText())
         );
     }
 
     @FXML
-    void partizioAldatuAction(ActionEvent event) {
+    void partizioAldatuAction() {
         kargatuMarrazkia();
     }
 
@@ -99,7 +103,7 @@ public class HautaketaKud {
     public void hasieratu() {
         diskaIzendatu();
         sliderLandu();
-        comboBoxIrakurri();
+        comboBoxHasieratu();
         kargatuMarrazkia();
     }
 
@@ -117,17 +121,21 @@ public class HautaketaKud {
         lblPartiTamMax.setText(diskTam + disk.getNeurria());
     }
 
-    private void comboBoxIrakurri() {
-        //TODO: aukerak(n,w,q,d)
-        List<Aukerak> aukerak=Arrays.asList(
-                new Aukerak('n',"partizio berria gehitu"),
-                new Aukerak('w',"gorde eta bukatu"),
-                new Aukerak('q',"irten gorde gabe"),
-                new Aukerak('d',"partizioa ezabatu")
-        );
-        ObservableList<Aukerak> aukObs = FXCollections.observableArrayList(aukerak);
-        cmbHautaketa.setItems(aukObs);
+    /**
+     * Bi combobox-ak hasieratzen duen metodoa
 
+     */
+    private void comboBoxHasieratu() {
+        aukerakKargatu();
+
+        partizioakKargatu();
+    }
+
+    private void partizioakKargatu() {
+        /**
+         * Metodo honek partizioen izenak bistaratzen dituen metodoa da
+         * horretarako izenak eta metadatuak kargatzen dira beste klase batean
+         */
         // partizioak
         List<Diskak> partizioak=new ArrayList<>();
         try {
@@ -161,6 +169,16 @@ public class HautaketaKud {
         cmbPartizio.getSelectionModel().selectFirst();
     }
 
+    private void aukerakKargatu() {
+        List<Aukerak> aukerak=Arrays.asList(
+                new Aukerak('n',"partizio berria gehitu"),
+                new Aukerak('w',"gorde eta bukatu"),
+                new Aukerak('q',"irten gorde gabe"),
+                new Aukerak('d',"partizioa ezabatu")
+        );
+        ObservableList<Aukerak> aukObs = FXCollections.observableArrayList(aukerak);
+        cmbHautaketa.setItems(aukObs);
+    }
 
 
     private void sliderLandu() {
@@ -211,6 +229,7 @@ public class HautaketaKud {
         }
 
     }
+
 
     private void diskBalioak(String s) {
         String[] balioak=s.split("(?<=\\d)(?=\\D)");

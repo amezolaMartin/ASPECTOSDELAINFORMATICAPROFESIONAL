@@ -59,7 +59,7 @@ public class Terminal {
 
 
 
-    public BufferedReader fdiskExec(Aukerak aukerak, String diskIz, String partizioTam, String MB){
+    public BufferedReader fdiskExec(Aukerak aukerak, String charD, String diskIz, String partizioTam, String MB){
 
         Process pb = null;
         try {
@@ -93,13 +93,15 @@ public class Terminal {
                 case 'q':
                     //TODO: q -k egingo duen funtzioa
                     output.write(aukerak.getAukera());
-                    //erantzuna "/n"
+                    //erantzuna "\n"
                 case 'd':
                     //TODO: d -k egingoo duen funtzioa
                     output.write(aukerak.getAukera());
+                    output.write(charD);
                     // si hay mas de una particion 
                     break;
             }
+            output.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
