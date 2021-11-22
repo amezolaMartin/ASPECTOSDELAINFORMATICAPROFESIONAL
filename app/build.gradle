@@ -28,7 +28,10 @@ dependencies {
 
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'ProiektoJosu.Main'
+mainClassName = 'ProiektoJosu.Main'
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
 }
