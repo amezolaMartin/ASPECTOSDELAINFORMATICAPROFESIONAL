@@ -75,7 +75,7 @@ public class HautaketaKud {
                     txtGB.getText(),
                     lblTamaina.getText()
             );
-            partizioakKargatu();
+            hasieratu();
         }
 
     }

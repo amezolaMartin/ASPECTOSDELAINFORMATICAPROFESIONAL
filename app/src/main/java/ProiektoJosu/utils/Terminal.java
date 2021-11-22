@@ -81,9 +81,17 @@ public class Terminal {
                 //https://www.howtogeek.com/106873/how-to-use-fdisk-to-manage-partitions-on-linux/
                 case 'n':
                     output.write(aukerak.getAukera());
+                    output.flush();
+
                     output.write('\n');
+                    output.flush();
+
                     output.write('\n');
+                    output.flush();
+
                     output.write('\n');
+                    output.flush();
+
                     output.write("+"+partizioTam+MB);
                     break;
                 case 'w':
