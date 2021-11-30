@@ -6,7 +6,7 @@ A día de hoy todo el mundo tiene un discos duros de gran tamaño con los que ma
 
 Para ejecutar el proyecto hemos utilizado el IDE de IntelliJ ya que para Java es una ide que ofrece muchas utilidades.
 
-El JDK que hemos utilizado es el "Azul-Zulu 16.0.2" (POR CORREGIR ESTO).
+El JDK que hemos utilizado es el "Azul-Zulu 16.0.2" y para instalarlo se ha utilizado [a link] (https://github.com/user/repo/blob/branch/other_file.md)
 
 (MENCIONAR TAMBIEN EL GRADLE)
 
